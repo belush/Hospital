@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Hospital.DAL.Illness>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Claim)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EnterDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Diagnosis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FinalDiagnosis)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Claim)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EnterDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReleaseDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Diagnosis)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FinalDiagnosis)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IllnessId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IllnessId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IllnessId })
+        </td>
+    </tr>
+}
+
+</table>

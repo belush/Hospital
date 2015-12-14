@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital", "Hospital\Hospital.csproj", "{1A3106E6-1ABE-4C80-8E36-A749144BCF0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital.DAL", "Hospital.DAL\Hospital.DAL.csproj", "{F83634D6-E839-4B69-91D9-3D59773CF8F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital.Business", "Hospital.Business\Hospital.Business.csproj", "{D1F6C631-61C6-424B-8A2A-96088DEB1B36}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A3106E6-1ABE-4C80-8E36-A749144BCF0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A3106E6-1ABE-4C80-8E36-A749144BCF0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A3106E6-1ABE-4C80-8E36-A749144BCF0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A3106E6-1ABE-4C80-8E36-A749144BCF0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F83634D6-E839-4B69-91D9-3D59773CF8F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F83634D6-E839-4B69-91D9-3D59773CF8F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F83634D6-E839-4B69-91D9-3D59773CF8F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F83634D6-E839-4B69-91D9-3D59773CF8F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1F6C631-61C6-424B-8A2A-96088DEB1B36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1F6C631-61C6-424B-8A2A-96088DEB1B36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1F6C631-61C6-424B-8A2A-96088DEB1B36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1F6C631-61C6-424B-8A2A-96088DEB1B36}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

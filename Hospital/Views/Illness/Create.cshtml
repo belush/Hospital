@@ -1,0 +1,81 @@
+﻿@model Hospital.DAL.Illness
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Illness</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Claim)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Claim)
+            @Html.ValidationMessageFor(model => model.Claim)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EnterDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EnterDate)
+            @Html.ValidationMessageFor(model => model.EnterDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ReleaseDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ReleaseDate)
+            @Html.ValidationMessageFor(model => model.ReleaseDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Diagnosis)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Diagnosis)
+            @Html.ValidationMessageFor(model => model.Diagnosis)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FinalDiagnosis)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FinalDiagnosis)
+            @Html.ValidationMessageFor(model => model.FinalDiagnosis)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Id doctor")
+        </div>
+
+        <input type="text" name="Idd" />
+
+        <p>
+            <div class="editor-label">
+                @Html.Label("Id patient")
+            </div>
+
+            <input type="text" name="Idp" />
+
+        <p>
+<p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

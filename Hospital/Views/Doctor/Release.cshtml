@@ -1,0 +1,78 @@
+﻿@model Hospital.DAL.Illness
+
+@{
+    ViewBag.Title = "Release";
+}
+
+<h2>Release</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Illness</legend>
+
+        @Html.HiddenFor(model => model.IllnessId)
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.Claim)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Claim)
+            @Html.ValidationMessageFor(model => model.Claim)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EnterDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EnterDate)
+            @Html.ValidationMessageFor(model => model.EnterDate)
+        </div>*@
+
+        <div class="editor-field">
+            @Html.HiddenFor(model => model.Claim)
+        </div>
+
+        <div class="editor-field">
+            @Html.HiddenFor(model => model.EnterDate)
+        </div>        
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ReleaseDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ReleaseDate)
+            @Html.ValidationMessageFor(model => model.ReleaseDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Diagnosis)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Diagnosis)
+            @Html.ValidationMessageFor(model => model.Diagnosis)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FinalDiagnosis)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FinalDiagnosis)
+            @Html.ValidationMessageFor(model => model.FinalDiagnosis)
+        </div>
+
+        <p>
+            <input type="submit" value="Выписать" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Векнуться к пациентам", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

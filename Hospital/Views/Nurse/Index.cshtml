@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Hospital.DAL.Nurse>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Медсестры</h2>
+
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NurseId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.MidName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.BirthDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NurseId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.MidName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.BirthDate)
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.NurseId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.NurseId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.NurseId })
+        </td>*@
+    </tr>
+}
+
+</table>
+<br />
+@Html.ActionLink("Зарегистрировать новую медсестру", "RegisterNurse", "Account")
+<br />

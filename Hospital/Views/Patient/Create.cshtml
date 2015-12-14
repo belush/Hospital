@@ -1,0 +1,80 @@
+﻿@model Hospital.DAL.Illness
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Illness</legend>
+        <div class="editor-label">
+            @Html.HiddenFor(model => model.IllnessId)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Claim)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Claim)
+            @Html.ValidationMessageFor(model => model.Claim)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EnterDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EnterDate)
+            @Html.ValidationMessageFor(model => model.EnterDate)
+        </div>
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.ReleaseDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ReleaseDate)
+            @Html.ValidationMessageFor(model => model.ReleaseDate)
+        </div>*@
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.Diagnosis)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Diagnosis)
+            @Html.ValidationMessageFor(model => model.Diagnosis)
+        </div>*@
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.FinalDiagnosis)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FinalDiagnosis)
+            @Html.ValidationMessageFor(model => model.FinalDiagnosis)   
+        </div>*@
+
+
+        <div class="editor-label">
+            @*@Html.Label("Назначить доктора")*@
+            @Html.LabelFor(model => model.Doctor)
+        </div>
+        @*, ViewBag.Doctors as List<selectlistitem>*@
+            @Html.DropDownList("doctor")
+            @*@Html.TextBox("doctorId")*@
+            @*@Html.DropDownListFor(model => model.Doctor, ViewBag.Doctors as List<SelectListItem>)*@
+
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+</fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

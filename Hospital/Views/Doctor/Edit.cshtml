@@ -1,0 +1,90 @@
+﻿@model Hospital.DAL.Illness
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Illness</legend>
+
+        @Html.HiddenFor(model => model.IllnessId)
+        @Html.HiddenFor(model => model.Doctor.DoctorId)
+        @Html.HiddenFor(model => model.Patient.PatientId)
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.Claim)
+        </div>*@
+        <div class="editor-field">
+            @Html.HiddenFor(model => model.Claim)
+            @*@Html.ValidationMessageFor(model => model.Claim)*@
+        </div>
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.EnterDate)
+        </div>*@
+        <div class="editor-field">
+            @Html.HiddenFor(model => model.EnterDate)
+            @*@Html.ValidationMessageFor(model => model.EnterDate)*@
+        </div>
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.ReleaseDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ReleaseDate)
+            @Html.ValidationMessageFor(model => model.ReleaseDate)
+        </div>*@
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Diagnosis)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Diagnosis)
+            @Html.ValidationMessageFor(model => model.Diagnosis)
+        </div>
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.FinalDiagnosis)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FinalDiagnosis)
+            @Html.ValidationMessageFor(model => model.FinalDiagnosis)
+        </div>*@
+
+        @*<div class="editor-label">
+            @Html.Label("Процедуры")
+        </div>
+
+        <input type="text" name="procedure" />
+
+        <div class="editor-label">
+            @Html.Label("Лекарства")
+        </div>
+
+        <input type="text" name="drug" />
+
+        <div class="editor-label">
+            @Html.Label("Операции")
+        </div>
+
+        <input type="text" name="operation" />*@
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

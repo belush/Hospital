@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<h2>Добро пожаловать в больницу</h2>
+
+@if (ViewBag.IsAdmin)
+{
+    @Html.ActionLink("Зарегистрировать врача", "RegisterDoctor", "Account")
+    <br />
+    @Html.ActionLink("Зарегистрировать пациента", "RegisterPatient", "Account")
+    <br />
+    @Html.ActionLink("Зарегистрировать медсестру", "RegisterNurse", "Account")
+    <br />
+    <br />
+    @Html.ActionLink("Список врачей", "Index", "Doctor")
+    <br />
+    @Html.ActionLink("Список пациентов", "Index", "Patient")
+    <br />
+    @Html.ActionLink("Список медсестер", "Index", "Nurse")
+    <br />
+    <br />
+    @Html.ActionLink("Расписание", "Visits", "Home")
+    <br />
+}
+
+@if (ViewBag.IsDoctor)
+{
+    @Html.ActionLink("Мои пациенты", "MyPatients", "Doctor")
+}
+@if (ViewBag.IsNurse)
+{
+    @Html.ActionLink("Список пациентов", "Apps", "Nurse")
+}
+@if (ViewBag.IsPatient)
+{
+    @Html.ActionLink("Мед. карта", "Card", "Patient")
+}
+
+

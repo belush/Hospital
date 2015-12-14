@@ -1,0 +1,65 @@
+﻿@model Hospital.DAL.Entity.Appointment
+
+@{
+    ViewBag.Title = "MakeAppointment";
+}
+
+<h2>MakeAppointment</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Appointment</legend>
+
+        @Html.HiddenFor(model => model.AppointmentId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AppointmentType)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AppointmentType)
+            @Html.ValidationMessageFor(model => model.AppointmentType)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AppointmentName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AppointmentName)
+            @Html.ValidationMessageFor(model => model.AppointmentName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsAppointmentDone)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsAppointmentDone)
+            @Html.ValidationMessageFor(model => model.IsAppointmentDone)
+        </div>
+
+        <div class="editor-label">
+            @Html.Label("drug")
+        </div>
+
+        <input type="text" name="drug" />
+        <div class="editor-label">
+            @Html.Label("operation")
+        </div>
+
+        <input type="text" name="operation" />
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

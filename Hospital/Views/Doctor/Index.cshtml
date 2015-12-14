@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Hospital.DAL.Doctor>
+
+@{
+    ViewBag.Title = "Index";
+
+}
+@{
+    List<Hospital.DAL.Illness> ills = ViewBag.ills;
+}
+<h2>Врачи</h2>
+
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.FirstName)
+        </th>
+        <th>
+            @Html.ActionLink("Фамилия", "Index",
+                new
+                {
+                    sortBy = ViewBag.SortLastNameParameter
+                })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.MidName)
+        </th>
+        <th>
+            @Html.ActionLink("Категория", "Index",
+                new
+                {
+                    sortBy = ViewBag.SortCategoryParameter
+                })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.BirthDate)
+        </th>
+        <td>
+            @Html.ActionLink("Кол-во пациентов", "Index",
+                new
+                {
+                    sortBy = ViewBag.SortCountParameter
+                })
+        </td>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.MidName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.BirthDate)
+            </td>
+
+            <td>
+                @(ills.Where(i => i.ReleaseDate == null).Where(i => i.Doctor.DoctorId == item.DoctorId).Count())
+            </td>
+        </tr>
+    }
+</table>
+<br />
+@Html.ActionLink("Зарегистрировать нового врача", "RegisterDoctor", "Account")

@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Hospital.DAL.Visit>
+
+@{
+    ViewBag.Title = "Visits";
+}
+
+<h2>Расписание</h2>
+
+<table>
+
+    @foreach (Hospital.DAL.Visit item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            @foreach (Hospital.DAL.Illness ill in item.Ills)
+            {
+                @Html.DisplayFor(modelItem => ill.Doctor.User.UserName)
+            }
+        </tr>
+    }
+
+</table>

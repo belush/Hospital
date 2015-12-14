@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Hospital.DAL.Entity.Appointment>
+
+@{
+    ViewBag.Title = "Apps";
+}
+
+<h2>Назначения</h2>
+
+
+<table>
+    <tr>
+        <th>
+            @Html.Label("Пациент")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AppointmentType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AppointmentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsAppointmentDone)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    if (item.AppointmentType != "Операция")
+    {    
+    <tr>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.Illness.Patient.User.FirstName)*@
+            @item.Illness.Patient.User.LastName 
+            @item.Illness.Patient.User.FirstName.Substring(0, 1).
+            @item.Illness.Patient.User.MidName.Substring(0, 1).
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppointmentType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppointmentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsAppointmentDone)
+        </td>
+        <td>
+            @Html.ActionLink("Выполнить назначение", "MakeApp", new { appId = item.AppointmentId })
+             @*|
+            @Html.ActionLink("Details", "Details", new { id=item.AppointmentId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AppointmentId })*@
+        </td>
+    </tr>
+    }
+}
+
+</table>

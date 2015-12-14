@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Hospital.DAL.Entity.Appointment>
+
+@{
+    ViewBag.Title = "App";
+}
+
+@{
+    Hospital.DAL.Illness ill = ViewBag.ill;
+}
+@Html.Label(ill.Patient.User.FirstName)
+<h2>App</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateApp", new { illness = ill })
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AppointmentType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AppointmentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsAppointmentDone)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppointmentType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppointmentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsAppointmentDone)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AppointmentId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AppointmentId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AppointmentId })
+        </td>
+    </tr>
+}
+
+</table>

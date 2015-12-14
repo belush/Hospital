@@ -1,0 +1,92 @@
+﻿@*@model IEnumerable<Hospital.DAL.Entity.Appointment>*@
+@model Hospital.DAL.Entity.Appointment
+
+@{
+    ViewBag.Title = "CreateApp2";
+}
+@{
+    Hospital.DAL.Illness ill = ViewBag.ill;
+    ViewBag.illId = ill.IllnessId;
+    List<Hospital.DAL.Entity.Appointment> apps = ViewBag.apps;
+}
+<h2>Назначения</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AppointmentType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AppointmentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsAppointmentDone)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in apps) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppointmentType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppointmentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsAppointmentDone)
+        </td>
+        <td>
+            @Html.ActionLink("Выполнить", "MakeApp", new { appId = item.AppointmentId })            
+        </td>
+    </tr>
+}
+</table>
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Назначение</legend>
+        <h2>Выписать назначение</h2>
+     <br />
+        <div class="editor-label">
+            @*@Html.Label("Назначение")*@
+        </div>
+        <div class="editor-field">
+            @*@Html.DropDownList("appTypes")*@
+            @Html.DropDownListFor(model => model.AppointmentType, ViewData["appTypes"] as List<SelectListItem>)
+            @*@Html.Editor("AppointmentType")*@
+        </div>
+        <br />
+        <div class="editor-label">
+            @Html.Label("Название")
+        </div>
+        <div class="editor-field">
+            @*@Html.Editor("AppointmentName")*@
+            @Html.EditorFor(model => model.AppointmentName)
+        </div>
+
+        @*<div class="editor-label">
+                @Html.Label("Is Appointment Done")
+            </div>
+            <div class="editor-field">
+                @Html.Editor("IsAppointmentDone")
+            </div>*@
+
+        @Html.Hidden("illId", ill.IllnessId)
+
+        <p>
+            <input type="submit" value="Назначить" />
+            @Html.ActionLink("Выполнить все назначения", "MakeAppointment", new { illId = ill.IllnessId })
+        </p>
+    </fieldset>
+}
+@Html.ActionLink("Вернуться к пациентам", "MyPatients")
