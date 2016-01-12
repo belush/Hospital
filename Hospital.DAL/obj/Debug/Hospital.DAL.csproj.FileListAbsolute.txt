@@ -8,3 +8,13 @@ C:\Users\Евгений\Documents\Visual Studio 2013\Projects\Hospital\Hospital.
 C:\Users\Евгений\Documents\Visual Studio 2013\Projects\Hospital\Hospital.DAL\obj\Debug\Hospital.DAL.dll
 C:\Users\Евгений\Documents\Visual Studio 2013\Projects\Hospital\Hospital.DAL\obj\Debug\Hospital.DAL.pdb
 C:\Users\Евгений\Documents\Visual Studio 2013\Projects\Hospital\Hospital.DAL\obj\Debug\Hospital.DAL.csprojResolveAssemblyReference.cache
+C:\Users\Евгений\Documents\Visual Studio 2015\GitHub\Hospital\Hospital.DAL\bin\Debug\Hospital.DAL.dll.config
+C:\Users\Евгений\Documents\Visual Studio 2015\GitHub\Hospital\Hospital.DAL\bin\Debug\Hospital.DAL.dll
+C:\Users\Евгений\Documents\Visual Studio 2015\GitHub\Hospital\Hospital.DAL\bin\Debug\Hospital.DAL.pdb
+C:\Users\Евгений\Documents\Visual Studio 2015\GitHub\Hospital\Hospital.DAL\bin\Debug\EntityFramework.dll
+C:\Users\Евгений\Documents\Visual Studio 2015\GitHub\Hospital\Hospital.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Евгений\Documents\Visual Studio 2015\GitHub\Hospital\Hospital.DAL\bin\Debug\EntityFramework.xml
+C:\Users\Евгений\Documents\Visual Studio 2015\GitHub\Hospital\Hospital.DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Евгений\Documents\Visual Studio 2015\GitHub\Hospital\Hospital.DAL\obj\Debug\Hospital.DAL.csprojResolveAssemblyReference.cache
+C:\Users\Евгений\Documents\Visual Studio 2015\GitHub\Hospital\Hospital.DAL\obj\Debug\Hospital.DAL.dll
+C:\Users\Евгений\Documents\Visual Studio 2015\GitHub\Hospital\Hospital.DAL\obj\Debug\Hospital.DAL.pdb

@@ -13,27 +13,41 @@ namespace Hospital.DAL
     {
         UserContext p = new UserContext();
 
+        //DOCTOR LOGIC
+
+        public int GetDoctorId(string doctorName)
+        {
+            Doctor doctor = new Doctor();
+            doctor = p.Doctors.FirstOrDefault(x => x.User.UserName == doctorName);
+            int doctorId = doctor.DoctorId;
+            return doctorId;
+        }
+
+        public Doctor GetDoctorByName(string doctorName)
+        {
+            Doctor doctor = new Doctor();
+            doctor = p.Doctors.FirstOrDefault(x => x.User.UserName == doctorName);
+            return doctor;
+        }
+
+        public Doctor GetDoctorById(int id)
+        {
+            Doctor doctor = new Doctor();
+            doctor = p.Doctors.FirstOrDefault(x => x.DoctorId == id);
+            return doctor;
+        }
+
+        public Doctor GetDoctorByUserId(int id)
+        {
+            Doctor doctor = new Doctor();
+            doctor = p.Doctors.FirstOrDefault(x => x.User.UserId == id);
+            return doctor;
+        }
+
         public void AddDoctor(Doctor doctor)
         {
             p.Doctors.Add(doctor);
             p.SaveChanges();
-        }
-
-    
-
-        public bool IsPatientOnTreatment(int id)
-        {
-            bool isOnTreat = false;
-            List<Illness> ills = GetIllnesses();
-            foreach (var item in ills)
-            {
-               
-                if ((item.Patient.PatientId==id) && (item.FinalDiagnosis == null))
-                {
-                    isOnTreat = true;
-                }                
-            }
-            return isOnTreat;
         }
 
         public int GetDoctorCount()
@@ -42,86 +56,57 @@ namespace Hospital.DAL
             return count;
         }
 
-        
-        public void AddAppointment(Appointment app)
+        public List<Doctor> GetDoctors()
         {
-            p.Appointments.Add(app);
-            p.SaveChanges();
+            return p.Doctors.ToList();
         }
 
-        public void EditAppointment(Appointment app, string drug, string operation)
-        {            
-            //p.Appointments.Add(app);
-            p.Entry(app).State = EntityState.Modified;
-            p.SaveChanges();
-
-            if (drug != "" && drug != null)
-            {
-                Appointment a = new Appointment();
-                a.Illness = GetIllnessByAppId(app.AppointmentId);
-                a.AppointmentType = "Лекарства";
-                a.AppointmentName = drug;
-                p.Appointments.Add(a);
-
-            }
-            if (operation != "" && operation!= null)
-            {
-                Appointment a2 = new Appointment();
-                a2.Illness = app.Illness;
-                a2.AppointmentType = "Операции";
-                a2.AppointmentName = operation;
-                p.Appointments.Add(a2);
-            }
-
-            p.SaveChanges();
-            int m = 8;
-        }
-
-        public void EditAppointment2(Appointment app, string drug, string operation)
+        public List<Doctor> GetWorkDoctors()
         {
-            Illness illness = GetIllnessByAppId(app.AppointmentId);
-            if (drug != "" && drug != null)
+            List<Illness> ills = GetIllnesses();
+            List<Doctor> docs = new List<Doctor>();
+            foreach (var item in ills)
             {
-                Appointment a = new Appointment();
-                a.Illness = illness;
-                a.AppointmentType = "Лекарства";
-                a.AppointmentName = drug;
-                p.Appointments.Add(a);
+                docs.Add(item.Doctor);
+            }
+            docs = docs.Distinct().ToList();
 
-            }
-            if (operation != "" && operation != null)
-            {
-                Appointment a2 = new Appointment();
-                a2.Illness = app.Illness;
-                a2.AppointmentType = "Операции";
-                a2.AppointmentName = operation;
-                p.Appointments.Add(a2);
-            }
-            int o = 8;
-            p.SaveChanges();
-            int m = 8;
+            return docs.ToList();
         }
 
-        public Illness GetIllnessByAppId(int appId)
-        {
-            Appointment app = p.Appointments.FirstOrDefault(x => x.AppointmentId == appId);
-            Illness illness = app.Illness;
+        //PATIENT LOGIC
 
-            return illness;
+        public List<Patient> GetPatients()
+        {
+            return p.Patients.ToList();
         }
-        //public void AddAppointment(Appointment appointment)
-        //{
-        //    p.Appointments.Add(appointment);
-        //    p.SaveChanges();
-        //}
 
-        public void AddIllness(Illness illness)
+        public Patient GetPatient(int id)
         {
-            p.Illnesses.Add(illness);
+            Patient patient = p.Patients.Single(x => x.PatientId == id);
+            return patient;
+        }
+
+        public void EditPatients(Patient patient)
+        {
+            p.Entry(patient).State = EntityState.Modified;
             p.SaveChanges();
         }
 
+        public bool IsPatientOnTreatment(int id)
+        {
+            bool isOnTreat = false;
+            List<Illness> ills = GetIllnesses();
+            foreach (var item in ills)
+            {
 
+                if ((item.Patient.PatientId == id) && (item.FinalDiagnosis == null))
+                {
+                    isOnTreat = true;
+                }
+            }
+            return isOnTreat;
+        }
 
         public void AddPatient(Patient patient)
         {
@@ -135,38 +120,8 @@ namespace Hospital.DAL
             p.SaveChanges();
         }
 
-        public void EditUser(User user)
-        {
-            p.Entry(user).State = EntityState.Modified;
-            p.SaveChanges();
-        }
 
-        
-
-        public void EditVisit(Illness visit)
-        {
-            p.Entry(visit).State = EntityState.Modified;
-            p.SaveChanges();
-        }
-
-        public void EditPatients(Patient patient)
-        {
-            p.Entry(patient).State = EntityState.Modified;
-            p.SaveChanges();
-        }
-
-        public void AddNurse(Nurse nurse)
-        {
-            p.Nurses.Add(nurse);
-            p.SaveChanges();
-        }
-
-        public Illness GetIllness(int id)
-        {
-            Illness illness = p.Illnesses.FirstOrDefault(x => x.IllnessId == id);
-            
-            return illness;
-        }
+        //Appointments LOGIC
 
         public List<Appointment> GetApps(int id)
         {
@@ -193,11 +148,73 @@ namespace Hospital.DAL
 
         public void MakeApp(int appId)
         {
-            Appointment app = p.Appointments.FirstOrDefault(x=>x.AppointmentId==appId);
+            Appointment app = p.Appointments.FirstOrDefault(x => x.AppointmentId == appId);
             app.IsAppointmentDone = true;
 
             p.SaveChanges();
         }
+
+        public void AddAppointment(Appointment app)
+        {
+            p.Appointments.Add(app);
+            p.SaveChanges();
+        }
+
+        public void EditAppointment(Appointment app, string drug, string operation)
+        {
+            //p.Appointments.Add(app);
+            p.Entry(app).State = EntityState.Modified;
+            p.SaveChanges();
+
+            if (drug != "" && drug != null)
+            {
+                Appointment a = new Appointment();
+                a.Illness = GetIllnessByAppId(app.AppointmentId);
+                a.AppointmentType = "Лекарства";
+                a.AppointmentName = drug;
+                p.Appointments.Add(a);
+
+            }
+            if (operation != "" && operation != null)
+            {
+                Appointment a2 = new Appointment();
+                a2.Illness = app.Illness;
+                a2.AppointmentType = "Операции";
+                a2.AppointmentName = operation;
+                p.Appointments.Add(a2);
+            }
+
+            p.SaveChanges();
+            int m = 8;
+        }
+
+        //TODO: choose one function
+        public void EditAppointment2(Appointment app, string drug, string operation)
+        {
+            Illness illness = GetIllnessByAppId(app.AppointmentId);
+            if (drug != "" && drug != null)
+            {
+                Appointment a = new Appointment();
+                a.Illness = illness;
+                a.AppointmentType = "Лекарства";
+                a.AppointmentName = drug;
+                p.Appointments.Add(a);
+
+            }
+            if (operation != "" && operation != null)
+            {
+                Appointment a2 = new Appointment();
+                a2.Illness = app.Illness;
+                a2.AppointmentType = "Операции";
+                a2.AppointmentName = operation;
+                p.Appointments.Add(a2);
+            }
+            int o = 8;
+            p.SaveChanges();
+            int m = 8;
+        }
+
+        //Illness logic
 
         public void EditIllness(Illness illness)
         {
@@ -210,85 +227,48 @@ namespace Hospital.DAL
             return p.Illnesses.ToList();
         }
 
-        public List<Illness> GetPatientIlls(int userId)
+        public Illness GetIllnessByAppId(int appId)
         {
-            return p.Illnesses.Where(x=>x.Patient.User.UserId==userId).ToList();
+            Appointment app = p.Appointments.FirstOrDefault(x => x.AppointmentId == appId);
+            Illness illness = app.Illness;
+
+            return illness;
         }
 
-        public List<Doctor> GetDoctors()
+        public void AddIllness(Illness illness)
         {
-            return p.Doctors.ToList();
+            p.Illnesses.Add(illness);
+            p.SaveChanges();
         }
 
-        public List<Doctor> GetWorkDoctors()
+        public Illness GetIllness(int id)
         {
-            List<Illness> ills = GetIllnesses();
-            List<Doctor> docs = new List<Doctor>();
-            foreach (var item in ills)
-            {
-                docs.Add(item.Doctor);
-            }
-            docs = docs.Distinct().ToList();
+            Illness illness = p.Illnesses.FirstOrDefault(x => x.IllnessId == id);
 
-            return docs.ToList();
+            return illness;
         }
 
-        public bool IsNameUnique(string name)
+
+        //Nurses logic
+
+        public void AddNurse(Nurse nurse)
         {
-            bool IsNameRepeat = p.Users.Where(x => x.UserName == name).Any();
-            return !IsNameRepeat;
+            p.Nurses.Add(nurse);
+            p.SaveChanges();
         }
 
         public List<Nurse> GetNurses()
         {
             return p.Nurses.ToList();
         }
+       
+
+      //User logic
 
         public List<User> GetUsers()
         {
             return p.Users.ToList();
         }
-
-        public List<Patient> GetPatients()
-        {
-            return p.Patients.ToList();
-        }
-
-        public Patient GetPatient(int id)
-        {
-            Patient patient = p.Patients.Single(x => x.PatientId == id);
-            return patient;
-        }
-
-        public User GetUser(int id)
-        {
-            User user = p.Users.Single(x => x.UserId == id);
-            return user;
-        }
-
-       
-
-        public List<Illness> GetDoctorsIllnesses(int id)
-        {
-            Doctor doctor = p.Doctors.FirstOrDefault(d => d.User.UserId == id);
-
-            List<Illness> illnesses = p.Illnesses.Where(x => x.Doctor.DoctorId == doctor.DoctorId).ToList();            
-
-            return illnesses;
-        }
-
-        //public List<SelectListItem> GetDoctorsToSelect()
-        //{
-        //    List<SelectListItem> doctors = (from i in p.Doctors
-        //                                    select new SelectListItem()
-        //                                    {
-        //                                        Selected = false,
-        //                                        Text = (i.User.FirstName + " " + i.User.LastName),
-        //                                        Value = (i.DoctorId).ToString()
-        //                                    }).ToList();
-
-        //    return doctors;
-        //}
 
         public User GetUserById(int id)
         {
@@ -297,34 +277,44 @@ namespace Hospital.DAL
             return User;
         }
 
-        public Doctor GetDoctorById(int id)
+        public void EditUser(User user)
         {
-            Doctor doctor = new Doctor();
-            doctor = p.Doctors.FirstOrDefault(x => x.DoctorId == id);
-            return doctor;
+            p.Entry(user).State = EntityState.Modified;
+            p.SaveChanges();
         }
 
-        public Doctor GetDoctorByUserId(int id)
+        public User GetUser(int id)
         {
-            Doctor doctor = new Doctor();
-            doctor = p.Doctors.FirstOrDefault(x => x.User.UserId == id);
-            return doctor;
+            User user = p.Users.Single(x => x.UserId == id);
+            return user;
         }
 
-        public int GetDoctorId(string doctorName)
+        //other
+
+        public void EditVisit(Illness visit)
         {
-            Doctor doctor = new Doctor();
-            doctor = p.Doctors.FirstOrDefault(x => x.User.UserName == doctorName);
-            int doctorId = doctor.DoctorId;
-            return doctorId;
+            p.Entry(visit).State = EntityState.Modified;
+            p.SaveChanges();
         }
 
-        public Doctor GetDoctorByName(string doctorName)
+        public List<Illness> GetDoctorsIllnesses(int id)
         {
-            Doctor doctor = new Doctor();
-            doctor = p.Doctors.FirstOrDefault(x => x.User.UserName == doctorName);
-            return doctor;
+            Doctor doctor = p.Doctors.FirstOrDefault(d => d.User.UserId == id);
+
+            List<Illness> illnesses = p.Illnesses.Where(x => x.Doctor.DoctorId == doctor.DoctorId).ToList();
+
+            return illnesses;
         }
 
+        public List<Illness> GetPatientIlls(int userId)
+        {
+            return p.Illnesses.Where(x => x.Patient.User.UserId == userId).ToList();
+        }
+
+        public bool IsNameUnique(string name)
+        {
+            bool IsNameRepeat = p.Users.Where(x => x.UserName == name).Any();
+            return !IsNameRepeat;
+        }
     }
 }

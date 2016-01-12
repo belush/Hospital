@@ -7,3 +7,12 @@ C:\Users\Евгений\Documents\Visual Studio 2013\Projects\Hospital\Hospital.
 C:\Users\Евгений\Documents\Visual Studio 2013\Projects\Hospital\Hospital.Business\obj\Debug\Hospital.Business.csprojResolveAssemblyReference.cache
 C:\Users\Евгений\Documents\Visual Studio 2013\Projects\Hospital\Hospital.Business\obj\Debug\Hospital.Business.dll
 C:\Users\Евгений\Documents\Visual Studio 2013\Projects\Hospital\Hospital.Business\obj\Debug\Hospital.Business.pdb
+C:\Users\Евгений\Documents\Visual Studio 2015\GitHub\Hospital\Hospital.Business\bin\Debug\Hospital.Business.dll
+C:\Users\Евгений\Documents\Visual Studio 2015\GitHub\Hospital\Hospital.Business\bin\Debug\Hospital.Business.pdb
+C:\Users\Евгений\Documents\Visual Studio 2015\GitHub\Hospital\Hospital.Business\bin\Debug\Hospital.DAL.dll
+C:\Users\Евгений\Documents\Visual Studio 2015\GitHub\Hospital\Hospital.Business\bin\Debug\EntityFramework.dll
+C:\Users\Евгений\Documents\Visual Studio 2015\GitHub\Hospital\Hospital.Business\bin\Debug\Hospital.DAL.pdb
+C:\Users\Евгений\Documents\Visual Studio 2015\GitHub\Hospital\Hospital.Business\bin\Debug\EntityFramework.xml
+C:\Users\Евгений\Documents\Visual Studio 2015\GitHub\Hospital\Hospital.Business\obj\Debug\Hospital.Business.csprojResolveAssemblyReference.cache
+C:\Users\Евгений\Documents\Visual Studio 2015\GitHub\Hospital\Hospital.Business\obj\Debug\Hospital.Business.dll
+C:\Users\Евгений\Documents\Visual Studio 2015\GitHub\Hospital\Hospital.Business\obj\Debug\Hospital.Business.pdb
